@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Home = () => <h1>Home Page</h1>;
 const Login = () => <h1>Login Page</h1>;
@@ -25,6 +26,20 @@ const Header = () => {
   );
 };
 
+function HomeButton() {
+  let history = useHistory();
+
+  function handleClick() {
+    history.push("/");
+  }
+
+  return (
+    <button type="button" onClick={handleClick}>
+      Go home
+    </button>
+  );
+}
+
 function App() {
   return (
     <Router>
@@ -40,6 +55,7 @@ function App() {
           />
           <Route render={() => <h1>Page not found</h1>} />
         </Switch>
+        < HomeButton />
       </div>
     </Router>
   );
